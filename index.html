@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Yosise - Mi Portafolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: #2d3748;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #667eea;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        .feature-card p {
+            color: #718096;
+            line-height: 1.8;
+        }
+
+        .tech-stack {
+            background: #f7fafc;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .tech-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .tech-item:hover {
+            transform: scale(1.05);
+        }
+
+        .tech-item-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .tech-item-name {
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .role-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+        }
+
+        .role-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .role-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .contributions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .contribution-item {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .contribution-item h4 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .screenshots {
+            margin-top: 50px;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .screenshot-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .screenshot-item:hover {
+            transform: scale(1.03);
+        }
+
+        .screenshot-placeholder {
+            background: linear-gradient(135deg, #e0e7ff 0%, #cfd8ff 100%);
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: #667eea;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .hero p {
+                font-size: 1.1em;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Proyecto Yosise</h1>
+            <p>Una solución innovadora que transforma la manera en que [describe brevemente el propósito del proyecto]</p>
+            <a href="#detalles" class="btn">Ver Detalles</a>
+        </div>
+    </section>
+
+    <section class="container" id="detalles">
+        <h2 class="section-title">Características Principales</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>Alto Rendimiento</h3>
+                <p>Optimizado para ofrecer una experiencia rápida y fluida, con tiempos de carga mínimos y respuestas instantáneas.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Diseño Intuitivo</h3>
+                <p>Interfaz moderna y amigable que facilita la navegación y mejora la experiencia del usuario.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Seguridad</h3>
+                <p>Implementación de las mejores prácticas de seguridad para proteger los datos y la privacidad.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Responsive</h3>
+                <p>Diseño adaptable que funciona perfectamente en dispositivos móviles, tablets y escritorio.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Escalabilidad</h3>
+                <p>Arquitectura diseñada para crecer junto con las necesidades del proyecto.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Integración</h3>
+                <p>Fácil integración con servicios externos y APIs para extender funcionalidades.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-stack">
+        <div class="container">
+            <h2 class="section-title">Tecnologías Utilizadas</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-item-icon">⚛️</div>
+                    <div class="tech-item-name">React</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🟢</div>
+                    <div class="tech-item-name">Node.js</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🗄️</div>
+                    <div class="tech-item-name">MongoDB</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🎨</div>
+                    <div class="tech-item-name">CSS3</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">📜</div>
+                    <div class="tech-item-name">JavaScript</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🔧</div>
+                    <div class="tech-item-name">Git</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="role-section">
+        <div class="role-content">
+            <h2>Mi Rol y Contribuciones</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 20px;">
+                Como colaborador clave en el proyecto Yosise, tuve la responsabilidad de...
+            </p>
+            <div class="contributions">
+                <div class="contribution-item">
+                    <h4>💻 Desarrollo Frontend</h4>
+                    <p>Implementación de componentes reutilizables y optimización de la interfaz de usuario.</p>
+                </div>
+                <div class="contribution-item">
+                    <h4>🔧 Integración de APIs</h4>
+                    <p>Conexión con servicios externos y manejo eficiente de datos.</p>
+                </div>
+                <div class="contribution-item">
+                    <h4>🎯 Optimización</h4>
+                    <p>Mejora del rendimiento y reducción de tiempos de carga.</p>
+                </div>
+                <div class="contribution-item">
+                    <h4>🐛 Testing y Debug</h4>
+                    <p>Identificación y resolución de errores, garantizando estabilidad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container screenshots">
+        <h2 class="section-title">Capturas del Proyecto</h2>
+        <div class="screenshot-grid">
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder">📸</div>
+            </div>
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder">🖥️</div>
+            </div>
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder">📱</div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 30px; color: #718096;">
+            Reemplaza los placeholders con imágenes reales del proyecto
+        </p>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 - Proyecto Yosise</p>
+        <div class="social-links">
+            <a href="https://github.com/tu-usuario" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/tu-perfil" target="_blank">LinkedIn</a>
+            <a href="mailto:tu-email@ejemplo.com">Email</a>
+        </div>
+    </footer>
+</body>
+</html>
