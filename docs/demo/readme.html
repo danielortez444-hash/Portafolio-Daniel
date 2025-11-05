@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo YoSiSe - Instrucciones | Gael</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #22d3ee;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .back-button:hover {
+            color: var(--accent);
+            transform: translateX(-5px);
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .demo-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--success), var(--accent));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .alert {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-left: 4px solid var(--warning);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin: 2rem 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .alert-title {
+            color: var(--warning);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .alert p {
+            color: var(--text-muted);
+        }
+
+        .section {
+            margin: 4rem 0;
+            animation: fadeInUp 1s ease;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .content-card h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .content-card p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .step-container {
+            display: flex;
+            align-items: start;
+            margin-bottom: 2rem;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h4 {
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .command-box {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .command-box code {
+            color: #a5f3fc;
+            display: block;
+        }
+
+        .command-label {
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .requirement-card {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .requirement-card:hover {
+            background: rgba(99, 102, 241, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(99, 102, 241, 0.2);
+        }
+
+        .requirement-card h4 {
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .requirement-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 0.75rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .note-box {
+            background: rgba(34, 211, 238, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .note-box strong {
+            color: var(--accent);
+        }
+
+        .note-box p {
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .troubleshooting {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .troubleshooting h4 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .troubleshooting-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .troubleshooting-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .troubleshooting-item strong {
+            color: var(--text);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .troubleshooting-item p {
+            color: var(--text-muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .step-container {
+                flex-direction: column;
+            }
+
+            .step-number {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-button">← Volver al portafolio</a>
+
+        <header>
+            <div class="demo-badge">🚀 Demo Funcional</div>
+            <h1>Instrucciones de Demo</h1>
+            <p class="subtitle">
+                Guía completa para ejecutar la demo local del proyecto YoSiSe en tu máquina. 
+                Incluye instalación, configuración y solución de problemas comunes.
+            </p>
+        </header>
+
+        <div class="alert">
+            <div class="alert-title">⚠️ Importante</div>
+            <p>
+                Esta demo es una versión simplificada con datos de prueba. El código completo del 
+                proyecto está disponible bajo solicitud durante procesos de entrevista. Por razones 
+                de confidencialidad, algunas features están limitadas en esta versión pública.
+            </p>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">📋 Requisitos Previos</h2>
+            
+            <div class="requirements-grid">
+                <div class="requirement-card">
+                    <h4>🐍 Python</h4>
+                    <p>Versión 3.8 o superior instalada en tu sistema</p>
+                </div>
+                <div class="requirement-card">
+                    <h4>📦 pip</h4>
+                    <p>Gestor de paquetes de Python actualizado</p>
+                </div>
+                <div class="requirement-card">
+                    <h4>🔧 Git</h4>
+                    <p>Para clonar el repositorio de la demo</p>
+                </div>
+                <div class="requirement-card">
+                    <h4>💻 Terminal</h4>
+                    <p>Acceso a línea de comandos (CMD, PowerShell, Bash)</p>
+                </div>
+            </div>
+
+            <div class="note-box">
+                <strong>💡 Tip:</strong>
+                <p>
+                    Verifica tu versión de Python ejecutando <code style="background: rgba(0,0,0,0.3); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">python --version</code> 
+                    o <code style="background: rgba(0,0,0,0.3); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">python3 --version</code> en tu terminal.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🔧 Instalación Paso a Paso</h2>
+
+            <div class="content-card">
+                <div class="step-container">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <h4>Clonar el repositorio</h4>
+                        <p>Descarga la demo desde GitHub a tu máquina local</p>
+                        <div class="command-box">
+                            <div class="command-label">Terminal / CMD</div>
+                            <code>git clone https://github.com/&lt;USUARIO&gt;/yosise-demo.git</code>
+                            <code>cd yosise-demo</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-container">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <h4>Crear entorno virtual</h4>
+                        <p>Aísla las dependencias del proyecto del sistema</p>
+                        <div class="command-box">
+                            <div class="command-label">Windows</div>
+                            <code>python -m venv venv</code>
+                            <code>venv\Scripts\activate</code>
+                        </div>
+                        <div class="command-box">
+                            <div class="command-label">macOS / Linux</div>
+                            <code>python3 -m venv venv</code>
+                            <code>source venv/bin/activate</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-container">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <h4>Instalar dependencias</h4>
+                        <p>Instala Django y todas las librerías necesarias</p>
+                        <div class="command-box">
+                            <div class="command-label">Con entorno virtual activado</div>
+                            <code>pip install -r requirements.txt</code>
+                        </div>
+                        <div class="note-box">
+                            <strong>📦 Paquetes incluidos:</strong>
+                            <p>Django 4.2, Pillow (imágenes), django-crispy-forms, y más</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-container">
+                    <span class="step-number">4</span>
+                    <div class="step-content">
+                        <h4>Configurar base de datos</h4>
+                        <p>Crea las tablas necesarias en SQLite</p>
+                        <div class="command-box">
+                            <div class="command-label">Migraciones</div>
+                            <code>python manage.py migrate</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-container">
+                    <span class="step-number">5</span>
+                    <div class="step-content">
+                        <h4>Crear superusuario (opcional)</h4>
+                        <p>Para acceder al panel de administración de Django</p>
+                        <div class="command-box">
+                            <div class="command-label">Crear admin</div>
+                            <code>python manage.py createsuperuser</code>
+                        </div>
+                        <p style="margin-top: 0.5rem; color: var(--text-muted); font-size: 0.9rem;">
+                            Sigue las instrucciones para configurar username y password
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step-container">
+                    <span class="step-number">6</span>
+                    <div class="step-content">
+                        <h4>Cargar datos de prueba</h4>
+                        <p>Popula la base de datos con contenido de ejemplo</p>
+                        <div class="command-box">
+                            <div class="command-label">Fixtures</div>
+                            <code>python manage.py loaddata demo_data.json</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-container">
+                    <span class="step-number">7</span>
+                    <div class="step-content">
+                        <h4>Iniciar servidor de desarrollo</h4>
+                        <p>Ejecuta la aplicación localmente</p>
+                        <div class="command-box">
+                            <div class="command-label">Runserver</div>
+                            <code>python manage.py runserver</code>
+                        </div>
+                        <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); padding: 1rem; border-radius: 0.5rem; margin-top: 1rem;">
+                            <p style="color: var(--success); margin: 0;">
+                                ✓ Servidor corriendo en: <strong>http://127.0.0.1:8000/</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🎯 Funcionalidades de la Demo</h2>
+            
+            <div class="content-card">
+                <h3>Features Disponibles</h3>
+                <ul class="feature-list">
+                    <li>Sistema de autenticación (registro, login, logout)</li>
+                    <li>Visualización de contenido educativo paginado</li>
+                    <li>Búsqueda y filtrado por categorías</li>
+                    <li>Perfiles de usuario básicos</li>
+                    <li>Sistema de comentarios en contenido</li>
+                    <li>Panel de administración de Django</li>
+                    <li>API REST endpoints básicos</li>
+                    <li>Diseño responsive mobile-friendly</li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <h3>Usuarios de Prueba</h3>
+                <p style="margin-bottom: 1.5rem;">Credenciales pre-configuradas para testing:</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                    <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(99, 102, 241, 0.3);">
+                        <strong style="color: var(--accent); display: block; margin-bottom: 0.5rem;">👨‍🎓 Estudiante</strong>
+                        <code style="display: block; color: var(--text-muted); font-size: 0.9rem;">Usuario: estudiante_demo</code>
+                        <code style="display: block; color: var(--text-muted); font-size: 0.9rem;">Pass: demo123456</code>
+                    </div>
+                    
+                    <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(99, 102, 241, 0.3);">
+                        <strong style="color: var(--accent); display: block; margin-bottom: 0.5rem;">👨‍🏫 Profesor</strong>
+                        <code style="display: block; color: var(--text-muted); font-size: 0.9rem;">Usuario: profesor_demo</code>
+                        <code style="display: block; color: var(--text-muted); font-size: 0.9rem;">Pass: demo123456</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🐛 Solución de Problemas</h2>
+            
+            <div class="troubleshooting">
+                <h4>Problemas Comunes y Soluciones</h4>
+                
+                <div class="troubleshooting-item">
+                    <strong>❌ Error: "python no reconocido como comando"</strong>
+                    <p>
+                        Solución: Asegúrate de que Python esté en el PATH del sistema. 
+                        Intenta usar <code style="background: rgba(0,0,0,0.3); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">python3</code> 
+                        en lugar de <code style="background: rgba(0,0,0,0.3); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">python</code> 
+                        (común en macOS/Linux).
+                    </p>
+                </div>
+
+                <div class="troubleshooting-item">
+                    <strong>❌ Error: "No module named 'django'"</strong>
+                    <p>
+                        Solución: El entorno virtual no está activado o las dependencias no se instalaron. 
+                        Activa el venv y ejecuta <code style="background: rgba(0,0,0,0.3); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">pip install -r requirements.txt</code> nuevamente.
+                    </p>
+                </div>
+
+                <div class="troubleshooting-item">
+                    <strong>❌ Error: "Port 8000 already in use"</strong>
+                    <p>
+                        Solución: El puerto está ocupado. Usa un puerto diferente: 
+                        <code style="background: rgba(0,0,0,0.3); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">python manage.py runserver 8080</code>
+                    </p>
+                </div>
+
+                <div class="troubleshooting-item">
+                    <strong>❌ Error de migraciones o base de datos</strong>
+                    <p>
+                        Solución: Elimina el archivo db.sqlite3 y el folder migrations, luego ejecuta:
+                        <code style="background: rgba(0,0,0,0.3); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">python manage.py makemigrations</code> 
+                        y <code style="background: rgba(0,0,0,0.3); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">python manage.py migrate</code>
+                    </p>
+                </div>
+
+                <div class="troubleshooting-item">
+                    <strong>❌ Assets/CSS no se cargan correctamente</strong>
+                    <p>
+                        Solución: Ejecuta <code style="background: rgba(0,0,0,0.3); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">python manage.py collectstatic</code> 
+                        para recopilar archivos estáticos.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">📚 Recursos Adicionales</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <a href="../proyecto-x.html" style="text-decoration: none;">
+                    <div class="requirement-card" style="height: 100%;">
+                        <h4>📖 Documentación Técnica</h4>
+                        <p>Lee el caso de estudio completo del proyecto con detalles de arquitectura</p>
+                    </div>
+                </a>
+                
+                <a href="https://docs.djangoproject.com/en/4.2/" target="_blank" style="text-decoration: none;">
+                    <div class="requirement-card" style="height: 100%;">
+                        <h4>🔗 Django Docs</h4>
+                        <p>Documentación oficial de Django para referencia adicional</p>
+                    </div>
+                </a>
+                
+                <a href="mailto:tu-email@example.com" style="text-decoration: none;">
+                    <div class="requirement-card" style="height: 100%;">
+                        <h4>💬 Contacto</h4>
+                        <p>¿Problemas o preguntas? Contáctame directamente</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="content-card" style="text-align: center; background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1)); border-color: rgba(99, 102, 241, 0.3);">
+                <h3>🚀 ¿Todo funcionando?</h3>
+                <p style="margin-bottom: 1.5rem;">
+                    Explora la demo, prueba las funcionalidades y revisa el código. 
+                    Para acceso al proyecto completo, contáctame durante el proceso de entrevista.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="../index.html" style="display: inline-block; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+                        Volver al portafolio
+                    </a>
+                    <a href="../proyecto-x.html" style="display: inline-block; background: rgba(255, 255, 255, 0.1); color: white; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
+                        Ver caso de estudio
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 Gael - Desarrollador Jr.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                Demo YoSiSe | Guía de Instalación
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
