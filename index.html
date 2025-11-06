@@ -1,1 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gael - Portafolio Técnico</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #22d3ee;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 0 3rem;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .certifications {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            animation: fadeIn 1.2s ease;
+        }
+
+        .cert-badge {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .cert-badge:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .section {
+            margin: 4rem 0;
+            animation: fadeInUp 1s ease;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .skill-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .skill-card li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .project-highlight {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-highlight::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .project-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-highlight h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .link-card:hover {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .link-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .link-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .link-arrow {
+            display: inline-block;
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .link-card:hover .link-arrow {
+            transform: translateX(5px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+        }
+
+        .note {
+            background: rgba(34, 211, 238, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin: 2rem 0;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .project-highlight {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="hero-badge">💼 Disponible para nuevas oportunidades</div>
+            <h1>Gael</h1>
+            <p class="subtitle">Desarrollador Jr. | Python • Django • SQL</p>
+            
+            <div class="certifications">
+                <span class="cert-badge">🐍 Python Certified</span>
+                <span class="cert-badge">🚀 Django Fundamentals</span>
+                <span class="cert-badge">📊 Git & GitHub</span>
+                <span class="cert-badge">💾 Database Design</span>
+            </div>
+        </header>
+
+        <section class="section">
+            <p style="text-align: center; color: var(--text-muted); max-width: 800px; margin: 0 auto;">
+                Desarrollador apasionado por crear soluciones eficientes y escalables. 
+                Experiencia práctica en desarrollo full-stack con énfasis en backend, 
+                control de versiones y trabajo colaborativo siguiendo mejores prácticas de la industria.
+            </p>
+        </section>
+
+        <div class="project-highlight">
+            <div class="project-content">
+                <h2>🎯 Caso de Estudio Principal</h2>
+                <h3 style="color: var(--text); margin-bottom: 1rem; font-size: 1.5rem;">Proyecto YoSiSe</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+                    Colaboración significativa en proyecto real con metodologías ágiles, 
+                    arquitectura escalable y mejores prácticas de desarrollo profesional.
+                </p>
+                <a href="./proyecto-x.html" class="link-card" style="display: inline-block; width: auto; margin-top: 1rem;">
+                    <h3>Ver caso de estudio completo <span class="link-arrow">→</span></h3>
+                </a>
+            </div>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">🛠️ Stack Técnico</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Backend Development</h3>
+                    <ul>
+                        <li>Python 3.x (intermedio-avanzado)</li>
+                        <li>Django (ORM, Views, Class-Based Views)</li>
+                        <li>Django Forms & Validación</li>
+                        <li>API REST básica</li>
+                        <li>Arquitectura MVC/MTV</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Frontend & UI</h3>
+                    <ul>
+                        <li>HTML5 semántico</li>
+                        <li>CSS3 & Flexbox/Grid</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>Bootstrap básico</li>
+                        <li>Tailwind CSS (fundamentos)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Bases de Datos</h3>
+                    <ul>
+                        <li>SQL (consultas complejas)</li>
+                        <li>SQLite en producción</li>
+                        <li>Diseño de esquemas</li>
+                        <li>Índices y optimización</li>
+                        <li>Relaciones & normalización</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Dev Tools & Workflow</h3>
+                    <ul>
+                        <li>Git (branching strategies)</li>
+                        <li>GitHub (PRs, code review)</li>
+                        <li>Entornos virtuales (venv)</li>
+                        <li>Testing básico</li>
+                        <li>Desarrollo por features</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🔗 Recursos del Portafolio</h2>
+            
+            <div class="note">
+                <strong>📝 Nota:</strong> Los repositorios completos están bajo revisión en entornos privados. 
+                Código fuente real disponible bajo solicitud para procesos de entrevista.
+            </div>
+
+            <div class="links-grid">
+                <a href="./fragmentos/" class="link-card">
+                    <h3>📂 Snippets de Código <span class="link-arrow">→</span></h3>
+                    <p>Ejemplos seleccionados de código Python, Django y SQL que demuestran buenas prácticas y soluciones eficientes.</p>
+                </a>
+
+                <a href="./demo_project/readme.html" class="link-card">
+                    <h3>🚀 Demo Aislada <span class="link-arrow">→</span></h3>
+                    <p>Instrucciones para ejecutar demos funcionales del proyecto en ambiente local. Incluye guía de instalación.</p>
+                </a>
+
+                <a href="mailto:tu-email@example.com" class="link-card">
+                    <h3>💼 Solicitar Acceso <span class="link-arrow">→</span></h3>
+                    <p>Código completo y repositorios privados disponibles para revisión durante procesos de entrevista.</p>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 Gael - Desarrollador Jr.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                Construido con 💙 usando GitHub Pages
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
 
