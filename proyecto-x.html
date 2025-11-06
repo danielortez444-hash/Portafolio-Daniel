@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto YoSiSe - Caso de Estudio | Gael</title>
+    <title>Proyecto X - Caso de Estudio | Gael</title>
     <style>
         * {
             margin: 0;
@@ -149,12 +149,12 @@
         }
 
         .content-card li::before {
-            content: '▹';
+            content: '•';
             position: absolute;
             left: 0;
             color: var(--primary);
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
         }
 
         .highlight-box {
@@ -171,70 +171,25 @@
             font-size: 1.3rem;
         }
 
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .tech-item {
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            padding: 1rem 1.5rem;
-            border-radius: 0.75rem;
-            transition: all 0.3s ease;
-        }
-
-        .tech-item:hover {
-            background: rgba(99, 102, 241, 0.2);
-            border-color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .tech-item strong {
-            color: var(--accent);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
+        .note-box {
+            background: rgba(34, 211, 238, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
             margin: 2rem 0;
         }
 
-        .stat-card {
-            background: rgba(34, 211, 238, 0.1);
-            border: 1px solid rgba(34, 211, 238, 0.3);
-            border-radius: 1rem;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            background: rgba(34, 211, 238, 0.15);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(34, 211, 238, 0.2);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
+        .note-box strong {
             color: var(--accent);
-            display: block;
-            margin-bottom: 0.5rem;
         }
 
-        .stat-label {
+        .note-box p {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            margin-top: 0.5rem;
         }
 
         .code-snippet {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.9);
             border: 1px solid rgba(99, 102, 241, 0.3);
             border-radius: 0.75rem;
             padding: 1.5rem;
@@ -246,48 +201,55 @@
 
         .code-snippet code {
             color: #a5f3fc;
+            line-height: 1.6;
         }
 
-        .timeline {
+        .flow-steps {
+            counter-reset: step-counter;
+            list-style: none;
+            padding: 0;
+        }
+
+        .flow-steps li {
+            counter-increment: step-counter;
+            padding: 1rem 0 1rem 3rem;
             position: relative;
-            padding-left: 2rem;
-            margin: 2rem 0;
+            color: var(--text-muted);
+            border-left: 2px solid rgba(99, 102, 241, 0.3);
+            margin-left: 1rem;
         }
 
-        .timeline::before {
-            content: '';
+        .flow-steps li::before {
+            content: counter(step-counter);
             position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, var(--primary), var(--secondary));
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-bottom: 2rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.5rem;
-            top: 0.5rem;
-            width: 12px;
-            height: 12px;
+            left: -1.2rem;
+            top: 0.8rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            width: 2.5rem;
+            height: 2.5rem;
             border-radius: 50%;
-            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
             border: 3px solid var(--dark);
         }
 
-        .timeline-item h4 {
-            color: var(--accent);
-            margin-bottom: 0.5rem;
+        .architecture-box {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-family: 'Courier New', monospace;
+            text-align: center;
         }
 
-        .timeline-item p {
+        .architecture-box p {
             color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 2;
         }
 
         footer {
@@ -332,10 +294,6 @@
             .content-card {
                 padding: 1.5rem;
             }
-
-            .stat-number {
-                font-size: 2rem;
-            }
         }
     </style>
 </head>
@@ -344,262 +302,171 @@
         <a href="index.html" class="back-button">← Volver al portafolio</a>
 
         <header>
-            <div class="project-badge">📚 Caso de Estudio Completo</div>
-            <h1>Proyecto YoSiSe</h1>
+            <div class="project-badge">📚 Caso de Estudio</div>
+            <h1>Proyecto X</h1>
             <p class="subtitle">
-                Plataforma colaborativa educativa desarrollada con Django, enfocada en 
-                aprendizaje interactivo y gestión eficiente de contenido académico
+                Desarrollador Jr. • Python/Django • HTML/CSS/JS • SQL
             </p>
         </header>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-number">6+</span>
-                <span class="stat-label">Meses de desarrollo</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">15+</span>
-                <span class="stat-label">Features implementadas</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">100+</span>
-                <span class="stat-label">Commits realizados</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">3</span>
-                <span class="stat-label">Desarrolladores</span>
-            </div>
+        <div class="note-box">
+            <strong>📝 Nota:</strong>
+            <p>
+                Este documento describe el alcance personal de Gael dentro de un proyecto privado. 
+                El código completo y repositorios internos no se publican. Se ofrecen snippets limitados, 
+                capturas, métricas y una demo aislada para ilustrar el aporte técnico.
+            </p>
         </div>
 
         <section class="section">
-            <h2 class="section-title">📋 Resumen del Proyecto</h2>
+            <h2 class="section-title">1. Contexto</h2>
             <div class="content-card">
-                <h3>Contexto y Objetivos</h3>
                 <p>
-                    YoSiSe es una plataforma educativa diseñada para facilitar el aprendizaje colaborativo 
-                    entre estudiantes y profesores. El proyecto surge de la necesidad de crear un espacio 
-                    digital donde los usuarios puedan compartir conocimiento, resolver dudas y acceder a 
-                    recursos educativos de manera organizada y eficiente.
+                    Plataforma web con módulos de catálogo y operaciones (Python/Django + SQLite). 
+                    Usuarios: personal interno. Requerimientos: flujos rápidos, validaciones, integridad de datos.
                 </p>
-                <p>
-                    Mi rol consistió en el desarrollo de funcionalidades backend críticas, implementación 
-                    de modelos de datos robustos, y la creación de vistas tanto funcionales como basadas 
-                    en clases para gestionar la lógica de negocio de la aplicación.
-                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">2. Rol de Gael</h2>
+            <div class="content-card">
+                <ul>
+                    <li>Implementación de módulo de importación masiva de productos.</li>
+                    <li>Edición masiva (bulk update) con validaciones de negocio.</li>
+                    <li>Duplicación de productos con normalización de campos y prevención de colisiones.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">3. Stack y decisiones</h2>
+            <div class="content-card">
+                <ul>
+                    <li>Django (views basadas en clase), formularios con validación a nivel de campo y formulario.</li>
+                    <li>Django ORM para operaciones en lote y transacciones atómicas (<code style="background: rgba(0,0,0,0.3); padding: 0.2rem 0.5rem; border-radius: 0.25rem;">transaction.atomic()</code>).</li>
+                    <li>SQLite en desarrollo; base de datos relacional en producción.</li>
+                    <li>Manejo de configuración vía variables de entorno (sin secretos en repos públicos).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">4. Arquitectura (resumen)</h2>
+            
+            <div class="architecture-box">
+                <p>Capa de presentación (templates) → Views (CBV) → Servicios (import/bulk) → ORM → DB</p>
+            </div>
+
+            <div class="content-card">
+                <ul>
+                    <li>Validaciones: formularios + reglas de servicio + constraints en BD.</li>
+                    <li>Logs de auditoría para operaciones masivas.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">5. Flujo clave: Importación masiva</h2>
+            
+            <div class="content-card">
+                <ol class="flow-steps">
+                    <li>Subida de archivo CSV con encabezados validados.</li>
+                    <li>Previsualización y detección de errores por fila.</li>
+                    <li>Confirmación: inserción/actualización en lote usando transacciones.</li>
+                    <li>Resumen con métricas: insertados, actualizados, rechazados (y motivos).</li>
+                </ol>
             </div>
 
             <div class="highlight-box">
-                <h4>🎯 Logros Principales</h4>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="padding: 0.5rem 0; padding-left: 2rem; position: relative;">
-                        <span style="position: absolute; left: 0; color: var(--accent);">✓</span>
-                        Sistema de autenticación y perfiles de usuario completamente funcional
-                    </li>
-                    <li style="padding: 0.5rem 0; padding-left: 2rem; position: relative;">
-                        <span style="position: absolute; left: 0; color: var(--accent);">✓</span>
-                        Módulo de gestión de contenido educativo con categorización avanzada
-                    </li>
-                    <li style="padding: 0.5rem 0; padding-left: 2rem; position: relative;">
-                        <span style="position: absolute; left: 0; color: var(--accent);">✓</span>
-                        API REST para integración con componentes frontend modernos
-                    </li>
-                    <li style="padding: 0.5rem 0; padding-left: 2rem; position: relative;">
-                        <span style="position: absolute; left: 0; color: var(--accent);">✓</span>
-                        Optimización de consultas SQL reduciendo tiempos de carga en 40%
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">🛠️ Stack Tecnológico</h2>
-            <div class="tech-grid">
-                <div class="tech-item">
-                    <strong>Backend</strong>
-                    <span style="color: var(--text-muted);">Python 3.10, Django 4.2</span>
-                </div>
-                <div class="tech-item">
-                    <strong>Base de Datos</strong>
-                    <span style="color: var(--text-muted);">SQLite, PostgreSQL (producción)</span>
-                </div>
-                <div class="tech-item">
-                    <strong>Frontend</strong>
-                    <span style="color: var(--text-muted);">HTML5, CSS3, JavaScript, Bootstrap</span>
-                </div>
-                <div class="tech-item">
-                    <strong>Control de Versiones</strong>
-                    <span style="color: var(--text-muted);">Git, GitHub, GitFlow</span>
-                </div>
-                <div class="tech-item">
-                    <strong>Herramientas</strong>
-                    <span style="color: var(--text-muted);">VS Code, Postman, SQLite Browser</span>
-                </div>
-                <div class="tech-item">
-                    <strong>Metodología</strong>
-                    <span style="color: var(--text-muted);">Agile, Scrum, Code Review</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">💻 Contribuciones Técnicas</h2>
-
-            <div class="content-card">
-                <h3>1. Arquitectura de Modelos</h3>
-                <p>
-                    Diseñé e implementé el esquema de base de datos completo, definiendo relaciones 
-                    complejas entre usuarios, contenido educativo, categorías y comentarios. 
-                    Utilicé herencia de modelos y abstract base classes para mantener el código DRY.
-                </p>
+                <h4>Snippet ilustrativo (simplificado):</h4>
                 <div class="code-snippet">
-                    <code>
-# Ejemplo de modelo con relaciones<br>
-class ContenidoEducativo(models.Model):<br>
-&nbsp;&nbsp;&nbsp;&nbsp;titulo = models.CharField(max_length=200)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;autor = models.ForeignKey(Usuario, on_delete=CASCADE)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;categoria = models.ManyToManyField(Categoria)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;fecha_publicacion = models.DateTimeField(auto_now_add=True)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;class Meta:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ordering = ['-fecha_publicacion']<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;indexes = [models.Index(fields=['titulo', 'autor'])]
-                    </code>
-                </div>
-            </div>
-
-            <div class="content-card">
-                <h3>2. Vistas Basadas en Clases</h3>
-                <p>
-                    Implementé CBVs (Class-Based Views) aprovechando la herencia de Django para 
-                    crear vistas reutilizables y mantenibles. Incluí mixins personalizados para 
-                    control de permisos y validación de datos.
-                </p>
-                <ul>
-                    <li>ListView para listados paginados de contenido</li>
-                    <li>DetailView con sistema de comentarios en línea</li>
-                    <li>CreateView y UpdateView con validación personalizada</li>
-                    <li>Mixins de autenticación y autorización</li>
-                </ul>
-            </div>
-
-            <div class="content-card">
-                <h3>3. Optimización de Rendimiento</h3>
-                <p>
-                    Identifiqué y resolví cuellos de botella en consultas a base de datos mediante:
-                </p>
-                <ul>
-                    <li>Uso de select_related() y prefetch_related() para reducir queries N+1</li>
-                    <li>Implementación de índices estratégicos en campos de búsqueda frecuente</li>
-                    <li>Caché de consultas repetitivas con Django's cache framework</li>
-                    <li>Lazy loading de relaciones pesadas</li>
-                </ul>
-            </div>
-
-            <div class="content-card">
-                <h3>4. Sistema de Autenticación</h3>
-                <p>
-                    Desarrollé un sistema completo de gestión de usuarios con:
-                </p>
-                <ul>
-                    <li>Registro con validación de email</li>
-                    <li>Login/Logout con sesiones seguras</li>
-                    <li>Recuperación de contraseña por correo</li>
-                    <li>Perfiles de usuario editables</li>
-                    <li>Sistema de roles (Estudiante, Profesor, Admin)</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">📈 Proceso de Desarrollo</h2>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h4>Fase 1: Planificación y Diseño</h4>
-                    <p>Definición de requisitos, diseño de base de datos, arquitectura de la aplicación y wireframes iniciales.</p>
-                </div>
-                <div class="timeline-item">
-                    <h4>Fase 2: Desarrollo Backend</h4>
-                    <p>Implementación de modelos, vistas, formularios y lógica de negocio core. Setup de entorno de desarrollo.</p>
-                </div>
-                <div class="timeline-item">
-                    <h4>Fase 3: Integración Frontend</h4>
-                    <p>Desarrollo de templates, estilos CSS, y JavaScript para interactividad. Integración con Django templates.</p>
-                </div>
-                <div class="timeline-item">
-                    <h4>Fase 4: Testing y Optimización</h4>
-                    <p>Pruebas unitarias, identificación de bugs, optimización de queries, y mejoras de performance.</p>
-                </div>
-                <div class="timeline-item">
-                    <h4>Fase 5: Deploy y Mantenimiento</h4>
-                    <p>Configuración de servidor, deploy a producción, monitoreo y corrección de issues post-lanzamiento.</p>
+                    <code># snippets/auth_view.py (ejemplo de patrón de vista; no es código propietario)<br>
+from django.views import View<br>
+from django.shortcuts import render, redirect<br>
+from django.contrib import messages<br>
+<br>
+class BulkImportView(View):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;def post(self, request):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;csv_file = request.FILES.get("file")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if not csv_file:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;messages.error(request, "Archivo requerido")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return redirect("import")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# parseo + validación (omiso)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# operación en lote (omiso, ver demo aislada)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;messages.success(request, "Importación completada")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return redirect("import")</code>
                 </div>
             </div>
         </section>
 
         <section class="section">
-            <h2 class="section-title">🎓 Aprendizajes Clave</h2>
-            
+            <h2 class="section-title">6. Pruebas y calidad</h2>
             <div class="content-card">
-                <h3>Trabajo en Equipo</h3>
-                <p>
-                    Aprendí la importancia de la comunicación constante, code reviews constructivos, 
-                    y la resolución colaborativa de problemas. Participé activamente en reuniones 
-                    diarias de seguimiento y retrospectivas de sprint.
-                </p>
-            </div>
-
-            <div class="content-card">
-                <h3>Mejores Prácticas</h3>
-                <p>
-                    Implementé patrones de diseño como Repository, Strategy y Factory. Seguí 
-                    principios SOLID y mantuve la cobertura de tests superior al 70%. Documenté 
-                    código siguiendo docstrings de Google.
-                </p>
-            </div>
-
-            <div class="content-card">
-                <h3>Control de Versiones</h3>
-                <p>
-                    Dominé el flujo de trabajo GitFlow, creando branches por feature, realizando 
-                    merges limpios y resolviendo conflictos. Aprendí a escribir commits descriptivos 
-                    siguiendo conventional commits.
-                </p>
+                <ul>
+                    <li>Tests unitarios a nivel de servicios y validaciones.</li>
+                    <li>Ensayos con dataset sintético y casos borde (campos faltantes, duplicados).</li>
+                    <li>Evidencia: [disponible bajo solicitud]</li>
+                </ul>
             </div>
         </section>
 
         <section class="section">
-            <h2 class="section-title">🚀 Resultados e Impacto</h2>
-            
+            <h2 class="section-title">7. Resultados</h2>
             <div class="highlight-box">
                 <ul style="list-style: none; padding: 0;">
                     <li style="padding: 0.7rem 0; padding-left: 2rem; position: relative; color: var(--text-muted);">
                         <span style="position: absolute; left: 0; color: var(--accent); font-size: 1.3rem;">📊</span>
-                        Reducción del 40% en tiempos de carga mediante optimización de queries
+                        Reducción de tiempos de carga de catálogo en ~70% (medición de prueba local).
                     </li>
                     <li style="padding: 0.7rem 0; padding-left: 2rem; position: relative; color: var(--text-muted);">
-                        <span style="position: absolute; left: 0; color: var(--accent); font-size: 1.3rem;">👥</span>
-                        Sistema escalable capaz de manejar cientos de usuarios concurrentes
-                    </li>
-                    <li style="padding: 0.7rem 0; padding-left: 2rem; position: relative; color: var(--text-muted);">
-                        <span style="position: absolute; left: 0; color: var(--accent); font-size: 1.3rem;">🔒</span>
-                        Cero vulnerabilidades de seguridad detectadas en auditorías
-                    </li>
-                    <li style="padding: 0.7rem 0; padding-left: 2rem; position: relative; color: var(--text-muted);">
-                        <span style="position: absolute; left: 0; color: var(--accent); font-size: 1.3rem;">📱</span>
-                        Interfaz responsive funcionando perfectamente en todos los dispositivos
+                        <span style="position: absolute; left: 0; color: var(--accent); font-size: 1.3rem;">✓</span>
+                        Disminución de errores manuales al centralizar validaciones.
                     </li>
                 </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">8. Lecciones</h2>
+            <div class="content-card">
+                <ul>
+                    <li>Importar en lotes + transacciones mejora consistencia.</li>
+                    <li>Prevalidar datos evita fallos en cascada.</li>
+                    <li>Métricas y bitácora simplifican soporte.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">9. Enlaces</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                <a href="./demo_project/readme.html" style="text-decoration: none;">
+                    <div class="content-card" style="height: 100%; cursor: pointer;">
+                        <h3 style="margin-bottom: 0.5rem;">🚀 Demo aislada (mock)</h3>
+                        <p style="margin: 0;">docs/demo/</p>
+                    </div>
+                </a>
+                
+                <a href="./fragmentos/" style="text-decoration: none;">
+                    <div class="content-card" style="height: 100%; cursor: pointer;">
+                        <h3 style="margin-bottom: 0.5rem;">📂 Snippets</h3>
+                        <p style="margin: 0;">snippets/</p>
+                    </div>
+                </a>
+                
+                <a href="mailto:tu-email@example.com" style="text-decoration: none;">
+                    <div class="content-card" style="height: 100%; cursor: pointer;">
+                        <h3 style="margin-bottom: 0.5rem;">🔒 Código real</h3>
+                        <p style="margin: 0;">Acceso temporal bajo solicitud</p>
+                    </div>
+                </a>
             </div>
         </section>
 
         <section class="section">
             <div class="content-card" style="text-align: center; background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1)); border-color: rgba(99, 102, 241, 0.3);">
-                <h3>¿Interesado en conocer más detalles?</h3>
-                <p style="margin-bottom: 1.5rem;">
-                    Tengo acceso al código fuente completo y puedo proporcionar demos en vivo 
-                    durante el proceso de entrevista.
-                </p>
                 <a href="index.html" style="display: inline-block; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
                     Volver al portafolio
                 </a>
@@ -609,10 +476,12 @@ class ContenidoEducativo(models.Model):<br>
         <footer>
             <p>© 2025 Gael - Desarrollador Jr.</p>
             <p style="margin-top: 0.5rem; font-size: 0.9rem;">
-                Proyecto YoSiSe | Caso de Estudio Técnico
+                Portafolio-Daniel is maintained by danielortez444-hash
+            </p>
+            <p style="margin-top: 0.25rem; font-size: 0.85rem; color: var(--text-muted);">
+                This page was generated by GitHub Pages
             </p>
         </footer>
     </div>
 </body>
 </html>
-
