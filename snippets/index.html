@@ -1,1 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fragmentos de Código | Daniel</title>
+  <style>
+    :root {
+      --primary: #6366f1;
+      --secondary: #8b5cf6;
+      --dark: #0f172a;
+      --dark-light: #1e293b;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #22d3ee;
+    }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .note {
+      background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(34,211,238,0.1));
+      border-left: 4px solid var(--accent);
+      padding: 1rem 1.5rem;
+      border-radius: 0.5rem;
+      max-width: 800px;
+      margin: 2rem auto;
+      color: var(--text);
+    }
+
+    .note strong {
+      color: var(--accent);
+    }
+
+    section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      border: 2px solid rgba(255,255,255,0.1);
+      box-shadow: 0 6px 20px rgba(99,102,241,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      border-color: var(--accent);
+    }
+
+    pre {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 10px;
+      color: #e2e8f0;
+      overflow-x: auto;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 3rem;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--secondary);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="badge">📂 Sección de Fragmentos</div>
+    <h1>Snippets & Imágenes</h1>
+    <p class="subtitle">Ejemplos visuales y de código de proyectos recientes</p>
+  </header>
+
+  <div class="note">
+    <strong>💡 Nota:</strong> 
+    Esta página incluye fragmentos técnicos e imágenes seleccionadas 
+    que muestran el proceso de desarrollo, estructura de código y resultados visuales.
+  </div>
+
+  <section>
+    <h2>🖼️ Capturas y ejemplos visuales</h2>
+    <div class="gallery">
+      <img src="imagenes/ejemplo1.png" alt="Ejemplo 1">
+      <img src="imagenes/ejemplo2.jpg" alt="Ejemplo 2">
+      <img src="imagenes/ejemplo3.png" alt="Ejemplo 3">
+    </div>
+  </section>
+
+  <section>
+    <h2>💻 Fragmentos de código</h2>
+    <pre><code># auth_view.py (extracto)
+def login_view(request):
+    if request.method == "POST":
+        user = authenticate(request, username=request.POST['user'], password=request.POST['pass'])
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            return render(request, 'login.html', {'error': 'Credenciales inválidas'})
+    return render(request, 'login.html')
+</code></pre>
+
+    <pre><code>-- query_optimization.sql (extracto)
+SELECT name, AVG(duration) AS avg_duration
+FROM tasks
+WHERE status = 'completed'
+GROUP BY name
+ORDER BY avg_duration DESC;
+</code></pre>
+  </section>
+
+  <footer>
+    <p>© 2025 Daniel - Desarrollador Jr. | <a href="../index.html">Volver al portafolio</a></p>
+  </footer>
+</body>
+</html>
