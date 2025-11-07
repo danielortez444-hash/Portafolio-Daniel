@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Aislada (mock) | Gael</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #22d3ee;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .back-button:hover {
+            color: var(--accent);
+            transform: translateX(-5px);
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .demo-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--success), var(--accent));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin: 4rem 0;
+            animation: fadeInUp 1s ease;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .content-card h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .content-card p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .content-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .content-card li {
+            padding: 0.7rem 0;
+            color: var(--text-muted);
+            position: relative;
+            padding-left: 2rem;
+            line-height: 1.6;
+        }
+
+        .content-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .requirement-card {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .requirement-card:hover {
+            background: rgba(99, 102, 241, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(99, 102, 241, 0.2);
+        }
+
+        .requirement-card h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .requirement-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .command-box {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+        }
+
+        .command-box code {
+            color: #a5f3fc;
+            display: block;
+            line-height: 1.8;
+        }
+
+        .command-label {
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .link-box {
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .link-box strong {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .link-box code {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.3rem 0.8rem;
+            border-radius: 0.25rem;
+            margin-top: 0.5rem;
+            color: var(--text);
+            font-family: 'Courier New', monospace;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-button">← Volver al portafolio</a>
+
+        <header>
+            <div class="demo-badge">🚀 Demo Funcional</div>
+            <h1>Demo aislada (mock)</h1>
+            <p class="subtitle">
+                Pequeño ejemplo con Django para ilustrar conceptos usados en el <strong>Proyecto X</strong> sin exponer código propietario.
+            </p>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">📋 Requisitos</h2>
+            
+            <div class="requirements-grid">
+                <div class="requirement-card">
+                    <h4>🐍 Python</h4>
+                    <p>Versión 3.10 o superior</p>
+                </div>
+                <div class="requirement-card">
+                    <h4>📦 pip</h4>
+                    <p>Gestor de paquetes</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🔧 Pasos</h2>
+
+            <div class="content-card">
+                <h3>Instalación y configuración</h3>
+                
+                <div class="command-box">
+                    <code>python -m venv .venv</code>
+                </div>
+
+                <div class="command-box">
+                    <div class="command-label">Windows PowerShell:</div>
+                    <code>.\.venv\Scripts\Activate.ps1</code>
+                </div>
+
+                <div class="command-box">
+                    <div class="command-label">macOS/Linux:</div>
+                    <code># source .venv/bin/activate</code>
+                </div>
+
+                <div class="command-box">
+                    <code>pip install -r requirements.txt</code>
+                </div>
+
+                <div class="command-box">
+                    <code>python manage.py migrate</code>
+                </div>
+
+                <div class="command-box">
+                    <code>python manage.py loaddata seeds.json   # datos de ejemplo</code>
+                </div>
+
+                <div class="command-box">
+                    <code>python manage.py runserver</code>
+                </div>
+
+                <div class="link-box">
+                    <strong>🌐 Abrir:</strong>
+                    <br>
+                    <code>http://127.0.0.1:8000/</code>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">✨ Qué muestra</h2>
+            
+            <div class="content-card">
+                <ul>
+                    <li>Listado de productos (modelo simple)</li>
+                    <li>Importación mock desde CSV (vista simplificada)</li>
+                    <li>Validaciones básicas y mensajes de resultado</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="content-card" style="text-align: center; background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1)); border-color: rgba(99, 102, 241, 0.3);">
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="../index.html" style="display: inline-block; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+                        Volver al portafolio
+                    </a>
+                    <a href="../proyecto-x.html" style="display: inline-block; background: rgba(255, 255, 255, 0.1); color: white; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
+                        Ver caso de estudio
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 Gael - Desarrollador Jr.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                Demo Proyecto X | Guía de Instalación
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
