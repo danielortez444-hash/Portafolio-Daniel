@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demo Aislada (mock) | Daniel</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --primary: #6366f1;
@@ -86,10 +82,7 @@
             margin: 0 auto;
         }
 
-        .section {
-            margin: 4rem 0;
-            animation: fadeInUp 1s ease;
-        }
+        .section { margin: 4rem 0; animation: fadeInUp 1s ease; }
 
         .section-title {
             font-size: 2rem;
@@ -124,11 +117,7 @@
             border-color: rgba(99, 102, 241, 0.3);
         }
 
-        .content-card h3 {
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
+        .content-card h3 { color: var(--accent); margin-bottom: 1.5rem; font-size: 1.5rem; }
 
         .content-card p {
             color: var(--text-muted);
@@ -136,10 +125,7 @@
             line-height: 1.8;
         }
 
-        .content-card ul {
-            list-style: none;
-            margin-top: 1rem;
-        }
+        .content-card ul { list-style: none; margin-top: 1rem; }
 
         .content-card li {
             padding: 0.7rem 0;
@@ -180,16 +166,9 @@
             box-shadow: 0 5px 20px rgba(99, 102, 241, 0.2);
         }
 
-        .requirement-card h4 {
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
+        .requirement-card h4 { color: var(--accent); margin-bottom: 0.5rem; font-size: 1.1rem; }
 
-        .requirement-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
+        .requirement-card p { color: var(--text-muted); font-size: 0.9rem; }
 
         .command-box {
             background: rgba(15, 23, 42, 0.9);
@@ -202,57 +181,9 @@
             font-size: 0.95rem;
         }
 
-        .command-box code {
-            color: #a5f3fc;
-            display: block;
-            line-height: 1.8;
-        }
+        .command-box code { color: #a5f3fc; display: block; line-height: 1.8; }
 
-        .command-label {
-            color: var(--accent);
-            font-size: 0.85rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-            border: 2px solid rgba(99, 102, 241, 0.3);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin: 2rem 0;
-        }
-
-        .highlight-box h4 {
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .link-box {
-            background: rgba(34, 211, 238, 0.1);
-            border: 1px solid rgba(34, 211, 238, 0.3);
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            margin: 1.5rem 0;
-            text-align: center;
-        }
-
-        .link-box strong {
-            color: var(--accent);
-            font-size: 1.1rem;
-        }
-
-        .link-box code {
-            display: inline-block;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 0.3rem 0.8rem;
-            border-radius: 0.25rem;
-            margin-top: 0.5rem;
-            color: var(--text);
-            font-family: 'Courier New', monospace;
-        }
+        .command-label { color: var(--accent); font-size: 0.85rem; margin-bottom: 0.5rem; font-weight: 600; }
 
         footer {
             text-align: center;
@@ -263,108 +194,58 @@
         }
 
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            .container {
-                padding: 1rem;
-            }
-
-            .content-card {
-                padding: 1.5rem;
-            }
+            h1 { font-size: 2rem; }
+            .container { padding: 1rem; }
+            .content-card { padding: 1.5rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="../index.html" class="back-button">← Volver al portafolio</a>
+        <!-- 🔗 Enlace corregido -->
+        <a href="https://danielortez444-hash.github.io/Portafolio-Daniel/" class="back-button">
+            ← Volver al portafolio
+        </a>
 
         <header>
             <div class="demo-badge">🚀 Demo Funcional</div>
             <h1>Demo aislada (mock)</h1>
             <p class="subtitle">
-                Pequeño ejemplo con Django para ilustrar conceptos usados en el <strong>Proyecto Yo sise</strong> sin exponer código propietario.
+                Pequeño ejemplo con Django para ilustrar conceptos usados en el <strong>Proyecto YoSiSe</strong> sin exponer código propietario.
             </p>
         </header>
 
         <section class="section">
             <h2 class="section-title">📋 Requisitos</h2>
-            
             <div class="requirements-grid">
-                <div class="requirement-card">
-                    <h4>🐍 Python</h4>
-                    <p>Versión 3.10 o superior</p>
-                </div>
-                <div class="requirement-card">
-                    <h4>📦 pip</h4>
-                    <p>Gestor de paquetes</p>
-                </div>
+                <div class="requirement-card"><h4>🐍 Python</h4><p>Versión 3.10 o superior</p></div>
+                <div class="requirement-card"><h4>📦 pip</h4><p>Gestor de paquetes</p></div>
             </div>
         </section>
 
         <section class="section">
             <h2 class="section-title">🔧 Pasos</h2>
-
             <div class="content-card">
                 <h3>Instalación y configuración</h3>
-                
-                <div class="command-box">
-                    <code>python -m venv .venv</code>
-                </div>
-
-                <div class="command-box">
-                    <div class="command-label">Windows PowerShell:</div>
-                    <code>.\.venv\Scripts\Activate.ps1</code>
-                </div>
-
-                <div class="command-box">
-                    <div class="command-label">macOS/Linux:</div>
-                    <code># source .venv/bin/activate</code>
-                </div>
-
-                <div class="command-box">
-                    <code>pip install -r requirements.txt</code>
-                </div>
-
-                <div class="command-box">
-                    <code>python manage.py migrate</code>
-                </div>
-
-                <div class="command-box">
-                    <code>python manage.py loaddata seeds.json   # datos de ejemplo</code>
-                </div>
-
-                <div class="command-box">
-                    <code>python manage.py runserver</code>
-                </div>
-
-                <div class="link-box">
-                    <strong>🌐 Abrir:</strong>
-                    <br>
+                <div class="command-box"><code>python -m venv .venv</code></div>
+                <div class="command-box"><div class="command-label">Windows PowerShell:</div><code>.\.venv\Scripts\Activate.ps1</code></div>
+                <div class="command-box"><div class="command-label">macOS/Linux:</div><code># source .venv/bin/activate</code></div>
+                <div class="command-box"><code>pip install -r requirements.txt</code></div>
+                <div class="command-box"><code>python manage.py migrate</code></div>
+                <div class="command-box"><code>python manage.py loaddata seeds.json   # datos de ejemplo</code></div>
+                <div class="command-box"><code>python manage.py runserver</code></div>
+                <div class="content-card" style="text-align: center; background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.3); padding: 1.5rem; border-radius: 0.75rem; margin: 1.5rem 0;">
+                    <strong>🌐 Abrir:</strong><br>
                     <code>http://127.0.0.1:8000/</code>
                 </div>
             </div>
@@ -372,11 +253,10 @@
 
         <section class="section">
             <h2 class="section-title">✨ Qué muestra</h2>
-            
             <div class="content-card">
                 <ul>
-                    <li>sidebar funcional</li>
-                    <li>Modulo de sugerencias inteligentes</li>
+                    <li>Sidebar funcional</li>
+                    <li>Módulo de sugerencias inteligentes</li>
                     <li>Historial funcional</li>
                 </ul>
             </div>
@@ -385,10 +265,13 @@
         <section class="section">
             <div class="content-card" style="text-align: center; background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1)); border-color: rgba(99, 102, 241, 0.3);">
                 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="../index.html" style="display: inline-block; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+                    <!-- 🔗 Ambos enlaces actualizados -->
+                    <a href="https://danielortez444-hash.github.io/Portafolio-Daniel/" 
+                       style="display: inline-block; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
                         Volver al portafolio
                     </a>
-                    <a href="../proyecto-x.html" style="display: inline-block; background: rgba(255, 255, 255, 0.1); color: white; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
+                    <a href="https://danielortez444-hash.github.io/Portafolio-Daniel/proyecto-x.html" 
+                       style="display: inline-block; background: rgba(255, 255, 255, 0.1); color: white; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
                         Ver caso de estudio
                     </a>
                 </div>
@@ -397,9 +280,7 @@
 
         <footer>
             <p>© 2025 Daniel - Desarrollador Jr.</p>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
-                Demo Yo sise | Guía de Instalación
-            </p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Demo YoSiSe | Guía de Instalación</p>
         </footer>
     </div>
 </body>
